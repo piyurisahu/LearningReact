@@ -15,16 +15,21 @@
 <script type="text/babel">
     var Pihu = React.createClass({
         render: function () {
-            return (<div><h1>Hello Piyuri</h1>
-                    <p>so whts up</p>
+            return (<div>
+                    <h1>Title of the movie</h1>
+                    <p>{this.props.title}</p>
+                    <h2>Genre of the movie</h2>
+                    <p>{this.props.genre}</p>
             </div>);
         }
     });
     ReactDOM.render(
-            <div><Pihu/> <Pihu/> <Pihu/></div>,
+            <div>
+                <Pihu title="Avtar" genre="Action"/> <Pihu/>
+            </div>, 
         document.getElementById('container')
     );
 </script>
- 
+
 </body>
 </html>
