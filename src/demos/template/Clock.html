@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>React - Template</title>
+            <!--<script src="../../css/main.css"></script>-->
+            <script src="../../js/react.min.js"></script>
+            <script src="../../js/react-dom.min.js"></script>
+            <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+class Clock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {date: new Date()};
+    }
+
+    componentDidMount(){
+        this.timeId = setInterval(
+            () =>this.tick(), 1000
+        );
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timeId);
+    }
+
+    tick()
+    {
+        this.setState({date : new Date()});
+    }
+
+    render() {
+        return (
+            <h1>Hi it is {this.state.date.toLocaleString()}</h1>
+        );
+    }
+}
+
+
+ReactDOM.render(
+    <Clock />,
+    document.getElementById('container')
+);
+</script>
+</body>
+</html>
