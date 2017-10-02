@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+    <!--<script src="../../css/main.css"></script>-->
+    <script src="../../js/react.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+
+<div id="container"></div>
+
+
+<script type="text/babel">
+    var Check = React.createClass({
+
+        getInitialState : function()
+        {
+            return{editing :true,
+                }
+        },
+
+        edit : function () {
+            this.setState({editing : false})
+        },
+
+        save : function () {
+
+          this.setState({ editing : true})
+        },
+        normal :function () {
+            return (
+                    <div>
+                        <h3>{this.props.children}</h3>
+                        <button onClick={this.edit}>Edit</button>
+                    </div>
+            );
+        },
+
+        onEdit : function () {
+            return(
+                <div>
+                    <textarea defaultValue={this.props.children}></textarea>
+                    <button onClick={this.save}>Save</button>
+                </div>
+            );
+        },
+
+        render: function () {
+            if(this.state.editing)
+                return this.normal();
+
+            else
+                return this.onEdit();
+        }
+    });
+
+    ReactDOM.render(
+        <div>
+            <Check>Hi i am bucky</Check>
+            <Check>Hi i am Pyuri</Check>
+            <Check>Hi i am Rashmi</Check>
+        </div>,
+        document.getElementById('container')
+    );
+
+</script>
+
+</body>
+</html>
