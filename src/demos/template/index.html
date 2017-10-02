@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>React - Template</title>
+    <!--<script src="../../css/main.css"></script>-->
     <script src="../../js/react.min.js"></script>
     <script src="../../js/react-dom.min.js"></script>
     <script src="../../js/browser.min.js"></script>
@@ -12,23 +13,57 @@
 
 <div id="container"></div>
 
+
 <script type="text/babel">
-    var Pihu = React.createClass({
+    var Check = React.createClass({
+
+        getInitialState : function()
+            {
+                return{checked :true,
+                toggle : true}
+    },
+
+        handleCheck : function () {
+          this.setState({checked : !this.state.checked})
+
+        },
+        handleToggle : function () {
+          this.setState({toggle: !this.state.toggle})
+        },
+        edit : function () {
+            alert("this is edit")
+        },
+
         render: function () {
-            return (<div>
-                    <h1>Title of the movie</h1>
-                    <p>{this.props.title}</p>
-                    <h2>Genre of the movie</h2>
-                    <p>{this.props.genre}</p>
-            </div>);
+
+            var msg;
+            if (this.state.checked){
+                msg = "checked";
+        }else{
+                msg = "unchecked";
+            }
+
+            var toggleMsg;
+            if(this.state.toggle)
+                toggleMsg = "on"
+            else
+                toggleMsg= "off"
+            return (
+                <div>
+                    <input  type="checkbox"  onChange={this.handleCheck}/>
+                    <button onClick={this.edit}>Edit</button>
+                    <button onClick={this.handleToggle}>{toggleMsg}</button>
+                    <h1>This is {msg} </h1>
+                </div>
+            );
         }
     });
+
     ReactDOM.render(
-            <div>
-                <Pihu title="Avtar" genre="Action"/> <Pihu/>
-            </div>, 
+        <Check/>,
         document.getElementById('container')
     );
+
 </script>
 
 </body>
