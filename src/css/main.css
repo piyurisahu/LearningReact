@@ -1,0 +1,24 @@
+.button-danger, .button-danger-light, .button-default, .button-default-light, .button-info, .button-info-light, .button-primary, .button-primary-light, .button-secondary, .button-secondary-light, .button-success, .button-success-light, .button-warning-light {
+    border: none;
+    color: #FFF;
+    font: 13px/1.4 Roboto, sans-serif;
+    padding: 8px 12px
+}
+.button-danger {
+    background-color: #c0392b;
+    text-decoration: none
+}
+
+.button-danger:hover {
+    background-color: #9a2e22;
+    cursor: pointer
+}
+.button-primary {
+    background-color: #2c3e50;
+    text-decoration: none
+}
+
+.button-primary:hover {
+    background-color: #233240;
+    cursor: pointer
+}
