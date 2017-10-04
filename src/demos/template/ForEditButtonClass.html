@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>React - Template</title>
+            <!--<script src="../../css/main.css"></script>-->
+            <script src="../../js/react.min.js"></script>
+            <script src="../../js/react-dom.min.js"></script>
+            <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+class ForEditButtonClass extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {editing: true};
+    }
+
+    componentDidMount(){
+
+        this.setState({editing: true});
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timeId);
+    }
+
+    edit()
+    {
+        alert(this.state.editing);
+    }
+    tick()
+    {
+        this.setState({date : new Date()});
+    }
+    normal() {
+    return (
+            <div>
+                <h3>{this.props.children}</h3>
+                <button onClick={this.edit}>Edit</button>
+            </div>
+    );
+}
+
+    onEdit() {
+    return(
+            <div>
+                <textarea defaultValue={this.props.children}></textarea>
+                <button onClick={this.save}>Save</button>
+            </div>
+    );
+}
+
+    render() {
+        if(this.state.editing)
+            return this.normal();
+
+        else
+            return this.onEdit();
+    }
+
+}
+
+
+ReactDOM.render(
+        <div>
+            <ForEditButtonClass>Hi i am bucky</ForEditButtonClass>
+            <ForEditButtonClass>Hi i am Pyuri</ForEditButtonClass>
+            <ForEditButtonClass>Hi i am Rashmi</ForEditButtonClass>
+        </div>,
+    document.getElementById('container')
+);
+</script>
+</body>
+</html>
