@@ -1,22 +1,35 @@
 ﻿<!DOCTYPE html>
-<html >
+<html>
 <head>
- <meta charset="UTF-8">
- <title>React Hello World</title>
+    <meta charset="UTF-8">
+    <title>React Hello World</title>
 </head>
 
 <body>
- <div id="root">
- <!-- This div's content will be managed by React. -->
+<div id="root">
+    <!-- This div's content will be managed by React. -->
 </div>
- <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js'></script>
-   <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js'></script>
-   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js'></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
 
 <script type="text/babel">
+    console.log();
 
+    function tick() {
+    }
 
+    const element = <div>
+        <h1>It is {new Date().toLocaleTimeString()}</h1>,
+        <h1>Hellow World</h1>
+    </div>
+
+    ReactDOM.render(
+        element,
+        document.getElementById('root')
+    )
+    setInterval(tick, 1000)
 
 </script>
 
