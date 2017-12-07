@@ -16,23 +16,29 @@
 
 <script type="text/babel">
 
-        function Check(props) {
-          return (
-                  <h1>{props.date.toLocaleTimeString()}</h1>
-          );
+    var Check = React.createClass({
+
+
+        render: function () {
+
+
+            return (
+                    <div>
+                        <h1>This is </h1>
+                    </div>
+            );
         }
+    });
 
 
 
- function tick() {
 
-     ReactDOM.render(
-             <Check date={new Date()}/>,
-         document.getElementById('container')
-     );
- }
 
- setInterval(tick,1000);
+    ReactDOM.render(
+             <Check date = {new Date()}/>,
+         document.getElementById('container'));
+
+
 </script>
 
 </body>

@@ -17,40 +17,46 @@
 <script type="text/babel">
     var Check = React.createClass({
 
-        getInitialState : function()
-        {
-            return{editing :true,
-                }
+        getInitialState: function () {
+            return {
+                editing: true,
+            }
         },
 
-        edit : function () {
-            this.setState({editing : false})
+        edit: function () {
+            this.setState({editing: false})
         },
 
-        save : function () {
-
-          this.setState({ editing : true})
+        save: function () {
+            var val = this.refs.textArea.value;
+            this.props.update(val, this.props.index)
+            this.setState({editing: true})
         },
-        normal :function () {
+
+        remove: function () {
+            this.props.remove(this.props.index)
+        },
+        normal: function () {
             return (
                     <div>
                         <h3>{this.props.children}</h3>
                         <button onClick={this.edit}>Edit</button>
+                        <button onClick={this.remove}>Remove</button>
                     </div>
             );
         },
 
-        onEdit : function () {
-            return(
-                <div>
-                    <textarea defaultValue={this.props.children}></textarea>
-                    <button onClick={this.save}>Save</button>
-                </div>
+        onEdit: function () {
+            return (
+                    <div>
+                        <textarea ref='textArea' defaultValue={this.props.children}></textarea>
+                        <button onClick={this.save}>Save</button>
+                    </div>
             );
         },
 
         render: function () {
-            if(this.state.editing)
+            if (this.state.editing)
                 return this.normal();
 
             else
@@ -58,12 +64,65 @@
         }
     });
 
+    var Board = React.createClass({
+        getInitialState: function () {
+            return ({
+                comments: [
+
+                ]
+            });
+        },
+
+        eachComment : function (item, i) {
+            return (<Check key={i} index={i} edit={this.editComment} remove={this.removeComment} update={this.updateComment} >{item}</Check>);
+
+        },
+        addComment : function (newText) {
+          var arry = this.state.comments;
+          arry.push(newText);
+          console.log(arry);
+          this.setState({ comments : arry});
+        },
+
+        removeComment : function (i) {
+            var arry = this.state.comments;
+            arry.splice(i,1);
+            this.setState({comments : arry});
+        },
+
+        editComment : function (i, text) {
+          var arry = this.state.comments;
+          arry[i] = text;
+          this.setState({comments : arry});
+
+        },
+
+        updateComment : function (newText, i) {
+            debugger;
+            var arry = this.state.comments;
+            arry[i] = newText;
+            this.setState({comments : arry});
+
+        },
+
+        render: function () {
+            return (
+                <div>
+                    <button onclick={this.addComment(null,'sd')} className="button-info create" >Add New</button>
+                    <div className="board">
+                        {
+                            this.state.comments.map(this.eachComment)
+                        }
+                    </div>
+                </div>
+            );
+        }
+
+    });
+
+
     ReactDOM.render(
-        <div>
-            <Check>Hi i am bucky</Check>
-            <Check>Hi i am Pyuri</Check>
-            <Check>Hi i am Rashmi</Check>
-        </div>,
+            <Board/>,
         document.getElementById('container')
     );
 

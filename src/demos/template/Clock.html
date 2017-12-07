@@ -18,9 +18,18 @@ class Clock extends React.Component {
         this.state = {date: new Date()};
     }
 
+//    componentDidMount(){
+//        this.timeId = setInterval(
+//            () =>this.tick(), 1000
+//        );
+//    }
+
+//        https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class
     componentDidMount(){
         this.timeId = setInterval(
-            () =>this.tick(), 1000
+            function () {
+                return this.tick;
+            }, 1000
         );
     }
 
